@@ -1,7 +1,7 @@
 {
   "name": "cLiri",
   "version": "1.0.0",
-  "description": "",
+  "description": "cLiri takes command line prompts and returns some cool stuff. try it out!",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,13 +11,16 @@
     "url": "git+https://github.com/abuckstopshere/cLiri.git"
   },
   "keywords": [],
-  "author": "",
+  "author": "andrew buckley",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/abuckstopshere/cLiri/issues"
   },
   "homepage": "https://github.com/abuckstopshere/cLiri#readme",
   "dependencies": {
-    "npm": "^5.8.0"
+    "npm": "^5.8.0",
+    "twitter": "^1.7.1",
+    "spotify": "^0.3.0",
+    "request": "^2.85.0"
   }
 }
