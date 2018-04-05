@@ -2,7 +2,7 @@
   "name": "cLiri",
   "version": "1.0.0",
   "description": "cLiri takes command line prompts and returns some cool stuff. try it out!",
-  "main": "index.js",
+  "main": "liri.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -18,9 +18,12 @@
   },
   "homepage": "https://github.com/abuckstopshere/cLiri#readme",
   "dependencies": {
+    "chalk": "^2.3.2",
+    "dotenv": "^5.0.1",
+    "node-spotify-api": "^1.0.7",
     "npm": "^5.8.0",
-    "twitter": "^1.7.1",
-    "spotify": "^0.3.0",
-    "request": "^2.85.0"
+    "omdb": "^0.8.0",
+    "request": "^2.85.0",
+    "twitter": "^1.7.1"
   }
 }
