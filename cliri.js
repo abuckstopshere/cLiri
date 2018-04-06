@@ -72,10 +72,10 @@
             case 'tweets' :
                 showTweets()
                 break
-            case 'spotifyIt' :
+            case 'spotify' :
                 spotifySong()
                 break
-            case 'omdbIt' :
+            case 'omdb' :
                 omdbLookUp()
                 break
             case 'random' :

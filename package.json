@@ -2,7 +2,7 @@
   "name": "cLiri",
   "version": "1.0.0",
   "description": "cLiri takes command line prompts and returns some cool stuff. try it out!",
-  "main": "liri.js",
+  "main": "cliri.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
