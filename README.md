@@ -1,4 +1,4 @@
-                                                                        # cLiri
+                                                             # cLiri
 welcome to cLiri - a command-line interface language interpreter! this interpreter doesn't understand much, but if you've got a song that's been playing in your head all day, a movie you've been dying to look up, some tweets you wanna see styled up, or just wanna check some stuff out then this is the program for you!
 
 
