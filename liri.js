@@ -8,7 +8,11 @@
         let omdb = require('omdb')
         let request = require('request')
         let chalk = require('chalk')
+        let chalkAnimate = require('chalk-animation')
         const log = console.log
+        const rainbow = chalkAnimate.rainbow
+        const cyan = chalk.cyan
+        const red = chalk.red
 
 // Bring in the keys!
         let tClient = new twitter(keys.twitter)
@@ -17,9 +21,9 @@
 // This function.. well.. it shows tweets.
         const showTweets = () => {
             tClient.get('statuses/user_timeline' , function(error, tweets, response){
-                log(chalk.cyan("Here's some of your latest tweets!"))
+                log(cyan("Here's some of your latest tweets!"))
                 for (i in tweets) {
-                    log(chalk.red(tweets[i].text))
+                    log(red(tweets[i].text))
                 }
             })
         }
@@ -28,33 +32,35 @@
         const spotifySong = (songName) => {
             sClient
                 .search({type: 'track' , query : uQuery , limit: 1} , function(error, data) {
+                    if (error) throw error
                     let songInfo = data.tracks.items
                     for ( i in songInfo) {
-                        log(chalk.cyan("So you want some info on " + chalk.red(songInfo[i].name) + "?"))
-                        log(chalk.cyan("That song by " + chalk.red(songInfo[i].artists[0].name) + "?"))
-                        log(chalk.cyan("Well I know for a fact it came from the " + chalk.red(songInfo[i].album.name) + " album,"))
-                        log(chalk.cyan("which was released on/in " + chalk.red(songInfo[i].album.release_date) + "."))
-                        log(chalk.cyan("Outside of that, I think any more information you might need you'll just have to get from listening to it."))
-                        log(chalk.cyan("So to make life easy for you, here's a link: " + chalk.red(songInfo[i].external_urls.spotify)))
-                    }
-                })
-        }
+                        log(cyan("So you want some info on " + red(songInfo[i].name) + "? \n" +
+                                        "That song by " + red(songInfo[i].artists[0].name) + "? \n" +
+                                        "Well I know for a fact it came from the " + red(songInfo[i].album.name) + " album, \n" +
+                                        "which was released on/in " + red(songInfo[i].album.release_date) + ". \n" +
+                                        "Outside of that, I think any more information you might need you'll just have to get from listening to it. \n" +
+                                        "So to make life easy for you, here's a link: " + red(songInfo[i].external_urls.spotify)))
+                        }
+                     })
+                }
 
 // But boy am I glad to tell you about this function, which tells you everything your pretty little heart wants to know about any movie, all thanks to OMDb.
         const omdbLookUp = (movieName) => {
             request('http://www.omdbapi.com/?t=' + uQuery + '&y=&plot=&short&apikey=trilogy&r=json', function (error, response, body) {
+                if (error) throw error
                 let movieInfo = JSON.parse(body)
-                log(movieInfo)
-                log(chalk.cyan("So you want some info about " + chalk.red(movieInfo.Title) + "?"))
-                log(chalk.cyan("That movie came out in " + chalk.red(movieInfo.Year) + "."))
-                log(chalk.cyan("IMDb gave it a solid " + chalk.red(movieInfo.Ratings[0].Value) + ","))
-                log(chalk.cyan("while Rotten Tomatoes valued it at " + chalk.red(movieInfo.Ratings[1].Value) + "."))
-                log(chalk.cyan(movieInfo.Title + " is available in " + chalk.red(movieInfo.Language) + "."))
-                log(chalk.cyan("Not hooked yet? Check out the plot: " + chalk.red(movieInfo.Plot)))
-                log(chalk.cyan("Who starred in " + chalk.red(movieInfo.Title) +"?" + " That would be: " + chalk.red(movieInfo.Actors) + "."))
-                log(chalk.cyan("Who directed " + chalk.red(movieInfo.Title) + "?" + " None other than the prestigious " + chalk.red(movieInfo.Director) + "."))
-            })
-        }
+                log(cyan("So you want some info about " + red(movieInfo.Title) + "? \n"
+                            + red(movieInfo.Title) + " came out in " + red(movieInfo.Year) + ". \n"
+                            + "IMDb gave it a solid " + red(movieInfo.Ratings[0].Value) + ", \n"
+                            + "while Rotten Tomatoes valued it at " + red(movieInfo.Ratings[1].Value) + ". \n"
+                            + red(movieInfo.Title) + " is available in " + red(movieInfo.Language) + ", \n"
+                            +  red(movieInfo.Title) + " went to DVD format on " + red(movieInfo.DVD) + ". \n"
+                            +  "Not hooked yet? Check out the plot: " + red(movieInfo.Plot) + " \n"
+                            + "Who starred in " + red(movieInfo.Title) +"?" + " That would be: " + red(movieInfo.Actors) + ". \n"
+                            + "Who directed " + red(movieInfo.Title) + "?" + " None other than the prestigious " + red(movieInfo.Director) + "."))
+                    })
+                }
 
 //BUT DON'T TOUCH THIS FUNCTION. NO ONE KNOWS WHAT IT DOES. IM SERIOUS!
         const random = () => {

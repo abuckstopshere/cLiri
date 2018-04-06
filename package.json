@@ -19,6 +19,7 @@
   "homepage": "https://github.com/abuckstopshere/cLiri#readme",
   "dependencies": {
     "chalk": "^2.3.2",
+    "chalk-animation": "^1.5.2",
     "dotenv": "^5.0.1",
     "node-spotify-api": "^1.0.7",
     "npm": "^5.8.0",
