@@ -2,6 +2,7 @@
         require('dotenv').config();
         let [node , location , method, ...uQuery] = process.argv
         let fs = require('fs')
+        // let cLiri = module.exports()
         let keys = require('./keys.js')
         let twitter = require('twitter')
         let spotify = require('node-spotify-api')
@@ -9,7 +10,10 @@
         let request = require('request')
         let chalk = require('chalk')
         let chalkAnimate = require('chalk-animation')
+        let randText = ('./random.txt')
+        let utf = ('utf-8')
         const log = console.log
+        // let dataArray
         const rainbow = chalkAnimate.rainbow
         const cyan = chalk.cyan
         const red = chalk.red
@@ -41,9 +45,9 @@
                                         "which was released on/in " + red(songInfo[i].album.release_date) + ". \n" +
                                         "Outside of that, I think any more information you might need you'll just have to get from listening to it. \n" +
                                         "So to make life easy for you, here's a link: " + red(songInfo[i].external_urls.spotify)))
-                        }
-                     })
-                }
+                    }
+                })
+        }
 
 // But boy am I glad to tell you about this function, which tells you everything your pretty little heart wants to know about any movie, all thanks to OMDb.
         const omdbLookUp = (movieName) => {
@@ -59,26 +63,40 @@
                             +  "Not hooked yet? Check out the plot: " + red(movieInfo.Plot) + " \n"
                             + "Who starred in " + red(movieInfo.Title) +"?" + " That would be: " + red(movieInfo.Actors) + ". \n"
                             + "Who directed " + red(movieInfo.Title) + "?" + " None other than the prestigious " + red(movieInfo.Director) + "."))
-                    })
-                }
+            })
+        }
 
 //BUT DON'T TOUCH THIS FUNCTION. NO ONE KNOWS WHAT IT DOES. IM SERIOUS!
         const random = () => {
-            
+            fs
+              .readFileSync( randText , utf , function( error , data ) {
+                  if ( error ) throw error
+                  let dataArray = data.split(',')
+                  return dataArray
+              })
         }
 
 // and this is some super boring code that lets you make decisions or whatever
-        switch (method) {
-            case 'tweets' :
-                showTweets()
-                break
-            case 'spotify' :
-                spotifySong()
-                break
-            case 'omdb' :
-                omdbLookUp()
-                break
-            case 'random' :
-                random()
-                break
+        const switchy = ( method , uQuery ) => {
+            switch (method) {
+                case 'tweets' :
+                    showTweets()
+                    break
+                case 'spotify' :
+                    spotifySong()
+                    break
+                case 'omdb' :
+                    omdbLookUp()
+                    break
+                case 'random' :
+                    random()
+                    switchy(random[0],random[1])
+                    break
+                default :
+                    log(cyan("That, unfortunately, is not something you can do."))
+                    log(cyan("What is it you would like to do?"))
+                    log(cyan("Try this: node cLiri spotify dna"))
+            }
         }
+
+switchy( method , uQuery )

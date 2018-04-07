@@ -18,6 +18,6 @@ node cliri tweets
 ```
 
 test those out before trying some of your own!
-as always, send over whatever feedback you may have. 🤜  🤛  
+as always, send over whatever feedback you may have 🤜  🤛  
 
 ab🔥
