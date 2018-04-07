@@ -1,6 +1,6 @@
 // Necessary Requirements
         require('dotenv').config();
-        let [node , location , method, ...uQuery] = process.argv
+        let [node , liri , method, ...uQuery] = process.argv
         let fs = require('fs')
         // let cLiri = module.exports()
         let keys = require('./keys.js')
@@ -67,14 +67,7 @@
         }
 
 //BUT DON'T TOUCH THIS FUNCTION. NO ONE KNOWS WHAT IT DOES. IM SERIOUS!
-        const random = () => {
-            fs
-              .readFileSync( randText , utf , function( error , data ) {
-                  if ( error ) throw error
-                  let dataArray = data.split(',')
-                  return dataArray
-              })
-        }
+        const random = () => fs.readFileSync( randText , utf).split(',')
 
 // and this is some super boring code that lets you make decisions or whatever
         const switchy = ( method , uQuery ) => {
@@ -89,8 +82,11 @@
                     omdbLookUp()
                     break
                 case 'random' :
-                    random()
-                    switchy(random[0],random[1])
+                    let newMethod = random()[0]
+                    let uQuery = random()[1]
+                    log(newMethod , uQuery)
+                    // log(newCom)
+                    switchy(newMethod , uQuery)
                     break
                 default :
                     log(cyan("That, unfortunately, is not something you can do."))
